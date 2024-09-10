@@ -1,0 +1,100 @@
+import { VerMais } from "./buttonVerMais";
+import { CloudUpload } from "../cldImage";
+import { getServerAuthSession } from "~/server/auth";
+import ModalEditar from "./modalEditar";
+import { api } from "~/trpc/server";
+import { CardPrincipalPortfolio } from "./cardPrincipal";
+import IndicadorSecao from "../indicadorSecao/indicadorSecao";
+import FormEditarCardInformativo from "./formEditarCardInformativo";
+import FormCriarCardInformativo from "./formCreateCardInformativo";
+
+export async function Portfolio() {
+  const session = await getServerAuthSession();
+  const cardsPortfolio = await api.portfolio.getAll();
+
+  return (
+    <section
+      id="Portfolio"
+      className="mx-8 flex flex-col items-center justify-center space-y-8 lg:mx-36"
+    >
+      <IndicadorSecao.Root className="mr-auto">
+        <IndicadorSecao.Nome className="mr-4">Portfólio</IndicadorSecao.Nome>
+        <IndicadorSecao.BarraEscura className="mr-2" />
+        <IndicadorSecao.BarraVermelha />
+      </IndicadorSecao.Root>
+      {
+        //TODO Mudar uploadPreset para prod (cloudinary upload widget)
+      }
+      {session && <CloudUpload uploadPreset="SitePraxis" />}
+      <div className="grid w-full grid-cols-5 gap-x-12 gap-y-12">
+        <CardPrincipalPortfolio.Root className="col-span-full w-full bg-vermelho-praxis lg:col-span-2">
+          <CardPrincipalPortfolio.Image
+            url={cardsPortfolio[0]?.image ?? ""}
+          />
+          <CardPrincipalPortfolio.Title>
+            {cardsPortfolio[0]?.name}
+          </CardPrincipalPortfolio.Title>
+          <CardPrincipalPortfolio.Description>
+            {cardsPortfolio[0]?.description}
+          </CardPrincipalPortfolio.Description>
+          {session && (
+            <div className="flex w-full items-center justify-end pr-6">
+              <ModalEditar id={cardsPortfolio[0]?.id ?? 9999} />
+            </div>
+          )}
+        </CardPrincipalPortfolio.Root>
+        <CardPrincipalPortfolio.Root className="col-span-full w-full bg-vermelho-praxis lg:col-span-3">
+          <CardPrincipalPortfolio.Image
+            url={cardsPortfolio[1]?.image ?? ""}
+          />
+          <CardPrincipalPortfolio.Title>
+            {cardsPortfolio[1]?.name}
+          </CardPrincipalPortfolio.Title>
+          <CardPrincipalPortfolio.Description>
+            {cardsPortfolio[1]?.description}
+          </CardPrincipalPortfolio.Description>
+          {session && (
+            <div className="flex w-full items-center justify-end pr-6">
+              <ModalEditar id={cardsPortfolio[1]?.id ?? 9999} />
+            </div>
+          )}
+        </CardPrincipalPortfolio.Root>
+        <CardPrincipalPortfolio.Root className="col-span-full w-full bg-vermelho-praxis lg:col-span-3">
+          <CardPrincipalPortfolio.Image
+            url={cardsPortfolio[2]?.image ?? ""}
+          />
+          <CardPrincipalPortfolio.Title>
+            {cardsPortfolio[2]?.name}
+          </CardPrincipalPortfolio.Title>
+          <CardPrincipalPortfolio.Description>
+            {cardsPortfolio[2]?.description}
+          </CardPrincipalPortfolio.Description>
+          {session && (
+            <div className="flex w-full items-center justify-end pr-6">
+              <ModalEditar id={cardsPortfolio[2]?.id ?? 9999} />
+            </div>
+          )}
+        </CardPrincipalPortfolio.Root>
+        <CardPrincipalPortfolio.Root className="col-span-full w-full bg-vermelho-praxis lg:col-span-2">
+          <CardPrincipalPortfolio.Image
+            url={cardsPortfolio[3]?.image ?? ""}
+          />
+          <CardPrincipalPortfolio.Title>
+            {cardsPortfolio[3]?.name}
+          </CardPrincipalPortfolio.Title>
+          <CardPrincipalPortfolio.Description>
+            {cardsPortfolio[3]?.description}
+          </CardPrincipalPortfolio.Description>
+          {session && <ModalEditar id={cardsPortfolio[3]?.id ?? 9999} />}
+        </CardPrincipalPortfolio.Root>
+      </div>
+      {session && (
+        <div className="flex flex-col gap-y-4 md:flex-row md:gap-x-4">
+          <FormCriarCardInformativo />
+          <FormEditarCardInformativo />
+        </div>
+      )}
+      <VerMais />
+    </section>
+  );
+}
