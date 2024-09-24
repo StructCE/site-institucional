@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 import { Footer } from "./_components/footer";
 import Navbar from "./_components/navbar";
 
-import { Noto_Sans } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { cn } from "~/lib/utils";
@@ -15,7 +15,7 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const font = Noto_Sans({ subsets: ["latin"] });
+const font = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function RootLayout({
   children,
