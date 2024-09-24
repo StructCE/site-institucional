@@ -1,3 +1,5 @@
+import type { Config } from "tailwindcss";
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -16,32 +18,18 @@ const config = {
       },
     },
     extend: {
-      height: {
-        "98": "692px",
-      },
-      fontFamily: {
-        lora: ["Lora", "serif"],
-        noto: ["Noto Sans", "sans-serif"],
-      },
       colors: {
-        branco: "#FFFFFF",
-        "off-white": "#F4F1EF",
-        "vermelho-gentileza": "#FF7D87",
-        "vermelho-praxis": "#F23048",
-        "vermelho-excelencia": "#CC1F3C",
-        "off-black": "#1E1A1A",
-        "vermelho-praxis-translucido": "#F23048CD",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#000000",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "#D9D9D9",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -87,6 +75,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
+} satisfies Config;
 
 export default config;
