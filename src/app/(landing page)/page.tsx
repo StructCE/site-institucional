@@ -6,6 +6,7 @@ import QuemSomos from "./_components/quemSomos/quemSomos";
 import SecaoParceiros from "./_components/parceiros/secaoParceiros";
 import { Portfolio } from "./_components/portfolio/portfolio";
 import Valores from "./_components/quemSomos/mvv";
+import Whosomos from "./_components/whosomos/whosomos";
 
 export default async function Home() {
   return (
@@ -14,6 +15,7 @@ export default async function Home() {
       <QuemSomos />
       <Valores />
       <Portfolio />
+      <Whosomos />
       <SeçãoArtigosLandingPage />
       <Equipe />
       <SecaoParceiros />
