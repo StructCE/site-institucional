@@ -1,13 +1,11 @@
 import "~/styles/globals.css";
-import { Footer } from "./_components/footer";
-import Navbar from "./_components/navbar";
 
 import { Roboto } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { cn } from "~/lib/utils";
-import { AuthProvider } from "~/components/authProvider";
 import { Toaster } from "~/components/ui/toaster";
+import { AuthProvider } from "~/components/authProvider";
 
 export const metadata = {
   title: "Praxis Consultoria Jr",
@@ -24,13 +22,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={cn(font.className, "antialiased")}>
-      <body className="min-h-screen w-screen overflow-x-hidden bg-white">
-        <Navbar />
+      <body>
         <TRPCReactProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <div
+              className="mx-auto"
+              style={{
+                width: "min(1400px,100%)",
+              }}
+            >
+              {children}
+            </div>
+          </AuthProvider>
           <Toaster />
         </TRPCReactProvider>
-        <Footer />
       </body>
     </html>
   );
